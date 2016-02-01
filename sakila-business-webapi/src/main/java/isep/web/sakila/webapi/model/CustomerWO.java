@@ -1,56 +1,43 @@
 package isep.web.sakila.webapi.model;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
-import isep.web.sakila.jpa.entities.Address;
 import isep.web.sakila.jpa.entities.Customer;
-import isep.web.sakila.jpa.entities.Store;
 
-public class CustomerWO extends WebObject{
+public class CustomerWO extends WebObject {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3940626561941477764L;
+	private static final long serialVersionUID = 8165014285796102933L;
 
 	protected int customerId;
-	protected String firstName;
 	protected String lastName;
+	protected String firstName;
 	protected String email;
-	protected Address address;
-	protected Store store;
-	protected Timestamp lastUpdate;
-	protected Date createDate;
-	
+	protected int address_id;
+	protected int store_id;
+
 	public CustomerWO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
-	public CustomerWO(int customerId, String firstName, String lastName, String email, Address address, Store store,
-			Timestamp lastUpdate, Date createDate) {
+
+	public CustomerWO(int customerId, String lastName, String firstName, String email, int address_id, int store_id) {
 		super();
 		this.customerId = customerId;
-		this.firstName = firstName;
 		this.lastName = lastName;
+		this.firstName = firstName;
 		this.email = email;
-		this.address = address;
-		this.store = store;
-		this.lastUpdate = lastUpdate;
-		this.createDate = createDate;
+		this.address_id = address_id;
+		this.store_id = store_id;
 	}
-	
-	public CustomerWO(final Customer customer){
+
+	public CustomerWO(final Customer customer) {
 		super();
 		this.customerId = customer.getCustomerId();
-		this.firstName = customer.getFirstName();
 		this.lastName = customer.getLastName();
-		this.address = customer.getAddress();
+		this.firstName = customer.getFirstName();
 		this.email = customer.getEmail();
-		this.store = customer.getStore();
-		this.lastUpdate = customer.getLastUpdate();
-		this.createDate = customer.getCreateDate();
+		this.address_id = customer.getAddress().getAddressId();
+		this.store_id = customer.getStore().getStoreId();
 	}
 
 	public int getCustomerId() {
@@ -61,20 +48,20 @@ public class CustomerWO extends WebObject{
 		this.customerId = customerId;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
 	public String getLastName() {
 		return lastName;
 	}
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getEmail() {
@@ -85,45 +72,25 @@ public class CustomerWO extends WebObject{
 		this.email = email;
 	}
 
-	public Address getAddress() {
-		return address;
+	public int getAddress_id() {
+		return address_id;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setAddress_id(int adressId) {
+		this.address_id = adressId;
 	}
 
-	public Store getStore() {
-		return store;
+	public int getStore_id() {
+		return store_id;
 	}
 
-	public void setStore(Store store) {
-		this.store = store;
-	}
-
-	public Timestamp getLastUpdate() {
-		return lastUpdate;
-	}
-
-	public void setLastUpdate(Timestamp lastUpdate) {
-		this.lastUpdate = lastUpdate;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setStrore_id(int store_id) {
+		this.store_id = store_id;
 	}
 
 	@Override
 	public String toString() {
-		return "CustomerWO [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + ", address=" + address + ", store=" + store + ", lastUpdate=" + lastUpdate
-				+ ", createDate=" + createDate + "]";
+		return "Customer [id=" + this.customerId + ", LastNanem=" + this.lastName + ", First=" + this.firstName + "]";
 	}
-	
-	
-	
+
 }

@@ -36,4 +36,44 @@ public class BusinessTest {
 	public void testGetByCustomerID(){
 		Assert.assertEquals("MARY", business.getByCustomerID(1).getFirstName());
 	};
+	
+	@Test
+	public void testGetAllAddresses(){
+		Assert.assertEquals(603, business.getAllAddresses().size());
+	};
+	
+	@Test
+	public void testGetByAddressID(){
+		Assert.assertEquals("47 MySakila Drive", business.getByAddressID(1).getAddress());
+	};
+	
+	@Test
+	public void testGetAllCities(){
+		Assert.assertEquals(600, business.getAllCities().size());
+	};
+	
+	@Test
+	public void  testGetByCityID(){
+		Assert.assertEquals("Abha", business.getByCityID(2).getCity());
+	};
+	
+	@Test
+	public void testGetAllFilms(){
+		Assert.assertEquals(1000, business.getAllFilms().size());
+	};
+	
+	@Test
+	public void testGetByFilmID(){
+		Assert.assertEquals("ACADEMY DINOSAUR", business.getByFilmID(1).getTitle());
+	};
+	
+	@Test
+	public void testGetAllStaffs(){
+		Assert.assertEquals(2, business.getAllStaffs().size());
+	};
+	
+	@Test
+	public void testGetByStaffID(){
+		Assert.assertEquals("Hillyer", business.getByStaffID(1).getLastName());
+	};
 }
