@@ -27,4 +27,13 @@ public class BusinessTest {
 		Assert.assertEquals("GUINESS", business.getByID(1).getLastName());
 	}
 
+	@Test
+	public void testGetAllCustomers(){
+		Assert.assertEquals(599, business.getAllCustomers().size());
+	};
+	
+	@Test
+	public void testGetByCustomerID(){
+		Assert.assertEquals("MARY", business.getByCustomerID(1).getFirstName());
+	};
 }
