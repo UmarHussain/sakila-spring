@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Hello World!</title>
+    </head>
+    <body>
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+        <p>actor<a href="http://localhost:8080/ActorManagement.html">Actor Management</a></p>
+        <p>customer<a href="http://localhost:8080/CustomerManagement.html">Customer Management</a></p>
+        <p>inventory<a href="http://localhost:8080/InventoryManagement.html">Inventory Management</a></p>
+    </body>
+</html>
