@@ -1,16 +1,74 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Hello World!</title>
-    </head>
-    <body>
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-        <p>actor<a href="http://localhost:8080/ActorManagement.html">Actor Management</a></p>
-        <p>customer<a href="http://localhost:8080/CustomerManagement.html">Customer Management</a></p>
-        <p>inventory<a href="http://localhost:8080/InventoryManagement.html">Inventory Management</a></p>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8"></meta>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+<meta content="width=device-width, initial-scale=1" name="viewport"></meta>
+<meta content="HiringSM" name="description"></meta>
+<meta content="PENG Zhengshuai" name="author"></meta>
+
+<title>Hello</title>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Sakila-web-project</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="http://localhost:8080/ActorManagement.html">Actor</a></li>
+					<li><a href="http://localhost:8080/CustomerManagement.html">Customer</a></li>
+					<li><a href="http://localhost:8080/InventoryManagement.html">Inventory</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+
+	<div class="container">
+		<div class="col-md-offset-3 col-md-6">
+			<h1 th:inline="text">Hello
+				[[${#httpServletRequest.remoteUser}]]!</h1>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" />
+			</form>
+			<p>
+				actor<a href="http://localhost:8080/ActorManagement.html">Actor
+					Management</a>
+			</p>
+			<p>
+				customer<a href="http://localhost:8080/CustomerManagement.html">Customer
+					Management</a>
+			</p>
+			<p>
+				inventory<a href="http://localhost:8080/InventoryManagement.html">Inventory
+					Management</a>
+			</p>
+		</div>
+
+	</div>
+
+
+
+
+</body>
 </html>
