@@ -21,13 +21,13 @@ import isep.web.sakila.webapi.model.InventoryWO;
 @Service("inventoryService")
 @Transactional
 public class InventoryServiceImpl implements InventoryService {
-	
+
 	@Autowired
 	private InventoryRepository inventoryRepository;
-	
+
 	@Autowired
 	private FilmRepository filmRepository;
-	
+
 	@Autowired
 	private StoreRepository storeRepository;
 
@@ -38,20 +38,19 @@ public class InventoryServiceImpl implements InventoryService {
 	@Override
 	public List<InventoryWO> findAllInventories() {
 		List<InventoryWO> inventories = new LinkedList<InventoryWO>();
-		for(Inventory inventory : inventoryRepository.findAll()){
+		for (Inventory inventory : inventoryRepository.findAll()) {
 			inventories.add(new InventoryWO(inventory));
-			log.debug("Add inventory with id : "+inventory.getInventoryId());
+			log.debug("Add inventory with id : " + inventory.getInventoryId());
 		}
 		return inventories;
 	}
 
-	
 	// find by id
 	@Override
 	public InventoryWO findById(int id) {
-		log.debug("Find inventory with id : "+id);
+		log.debug("Find inventory with id : " + id);
 		Inventory inventory = inventoryRepository.findOne(id);
-		
+
 		if (inventory != null) {
 			return new InventoryWO(inventory);
 		}
@@ -64,7 +63,7 @@ public class InventoryServiceImpl implements InventoryService {
 		Inventory inventory = new Inventory();
 		Film film = filmRepository.findOne(inventoryWO.getFilm());
 		Store store = storeRepository.findOne((byte) inventoryWO.getStore());
-		
+
 		inventory.setFilm(film);
 		inventory.setStore(store);
 		inventory.setLastUpdate(new Timestamp(System.currentTimeMillis()));
@@ -77,7 +76,7 @@ public class InventoryServiceImpl implements InventoryService {
 		Inventory inventory = inventoryRepository.findOne(inventoryWO.getInventoryId());
 		Film film = filmRepository.findOne(inventoryWO.getFilm());
 		Store store = storeRepository.findOne((byte) inventoryWO.getStore());
-		
+
 		inventory.setFilm(film);
 		inventory.setStore(store);
 		inventory.setLastUpdate(new Timestamp(System.currentTimeMillis()));
@@ -90,5 +89,27 @@ public class InventoryServiceImpl implements InventoryService {
 		inventoryRepository.delete(id);
 	}
 
+	// find by store id
+	@Override
+	public List<InventoryWO> findInventoriesByStore(int storeId) {
+		List<InventoryWO> inventories = new LinkedList<InventoryWO>();
+		for (Inventory inventory : inventoryRepository.findAll()) {
+			if (inventory.getStore().getStoreId() == storeId) {
+				inventories.add(new InventoryWO(inventory));
+				log.debug("Add inventory with id : " + inventory.getInventoryId());
+			}
+		}
+		return inventories;
+	}
+
+	// find by film id
+	@Override
+	public List<InventoryWO> findInventoriesByFilm(int filmId) {
+		List<InventoryWO> inventories = new LinkedList<InventoryWO>();
+		for (Inventory inventory : inventoryRepository.findAllInventoriesByFilm(filmRepository.findOne(filmId))) {
+			inventories.add(new InventoryWO(inventory));
+		}
+		return inventories;
+	}
 
 }

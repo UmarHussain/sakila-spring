@@ -56,7 +56,7 @@ public class AddressServiceImpl implements AddressService {
 
 	// save address
 	@Override
-	public void saveAddress(AddressWO addressWO) {
+	public Address saveAddress(AddressWO addressWO) {
 		Address address = new Address();
 		address.setAddress(addressWO.getAddress());
 		address.setAddress2(addressWO.getAddress2());
@@ -70,7 +70,10 @@ public class AddressServiceImpl implements AddressService {
 		}
 
 		address.setLastUpdate(new Timestamp(System.currentTimeMillis()));
+		Address newAddress = addressRepository.save(address);
 		addressRepository.save(address);
+
+		return newAddress;
 	}
 
 	// update

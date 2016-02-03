@@ -17,55 +17,79 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import isep.web.sakila.webapi.model.InventoryWO;
+import isep.web.sakila.webapi.service.FilmService;
 import isep.web.sakila.webapi.service.InventoryService;
 
 @RestController
 public class InventoryRestController {
-	
-	
+
 	@Autowired
 	InventoryService inventoryService;
-	
-	// Log
+
+	@Autowired
+	FilmService filmService;
+
+	// log
 	private static final Log log = LogFactory.getLog(InventoryRestController.class);
-	
-	
-	// List All Inventories
+
+	// list all inventories
 	@RequestMapping(value = "/inventory/", method = RequestMethod.GET)
 	public ResponseEntity<List<InventoryWO>> listAllInventories() {
-		
-		log.debug("List all inventories");
-		
+		log.debug("List inventories");
 		List<InventoryWO> inventories = inventoryService.findAllInventories();
-		
+		log.debug("Got " + inventories.size() + " inventories");
 		if (inventories.isEmpty()) {
 			return new ResponseEntity<List<InventoryWO>>(HttpStatus.NO_CONTENT);
 		}
-		
 		return new ResponseEntity<List<InventoryWO>>(inventories, HttpStatus.OK);
 	}
-	
-	// Get Inventory By Id
+
+	// list inventories by store
+	@RequestMapping(value = "/inventory/store/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<InventoryWO>> listInventoriesByStore(@PathVariable("id") int storeId) {
+
+		log.debug("List inventories by store id : " + storeId);
+		List<InventoryWO> inventories = inventoryService.findInventoriesByStore(storeId);
+		log.debug("Got " + inventories.size() + " inventories");
+		if (inventories.isEmpty()) {
+			return new ResponseEntity<List<InventoryWO>>(HttpStatus.NO_CONTENT);
+		}
+
+		return new ResponseEntity<List<InventoryWO>>(inventories, HttpStatus.OK);
+	}
+
+	// list inventories by film
+	@RequestMapping(value = "/inventory/film/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<InventoryWO>> listInventoriesByFilm(@PathVariable("id") int filmId) {
+
+		log.debug("List inventories by film id : " + filmId);
+		List<InventoryWO> inventories = inventoryService.findInventoriesByFilm(filmId);
+		log.debug("Got " + inventories.size() + " inventories");
+		if (inventories.isEmpty()) {
+			return new ResponseEntity<List<InventoryWO>>(HttpStatus.NO_CONTENT);
+		}
+
+		return new ResponseEntity<List<InventoryWO>>(inventories, HttpStatus.OK);
+	}
+
+	// get inventory
 	@RequestMapping(value = "/inventory/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<InventoryWO> getInventory(@PathVariable("id") int id) {
-		
+
 		log.debug("Fetching Inventory with id " + id);
-		
 		InventoryWO inventoryWO = inventoryService.findById(id);
 		if (inventoryWO == null) {
 			System.out.println("Inventory with id " + id + " not found");
 			return new ResponseEntity<InventoryWO>(HttpStatus.NOT_FOUND);
 		}
-		
+
 		return new ResponseEntity<InventoryWO>(inventoryWO, HttpStatus.OK);
 	}
 
-	
-	// Create an Inventory
+	// create inventory
 	@RequestMapping(value = "/inventory/", method = RequestMethod.POST)
 	public ResponseEntity<Void> createInventory(@RequestBody InventoryWO inventoryWO, UriComponentsBuilder ucBuilder) {
-		
-		log.debug("Creating an inventory");
+
 		inventoryService.saveInventory(inventoryWO);
 
 		HttpHeaders headers = new HttpHeaders();
@@ -73,15 +97,16 @@ public class InventoryRestController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
-	
-	// Update an Inventory
+	// update inventory
 	@RequestMapping(value = "/inventoryUpdate/", method = RequestMethod.POST)
-	public ResponseEntity<InventoryWO> updateInventory(@RequestBody InventoryWO inventoryWO, UriComponentsBuilder ucBuilder) {
-		log.debug(String.format("Updating inventory %s ", inventoryWO.getInventoryId()));
+	public ResponseEntity<InventoryWO> updateInventory(@RequestBody InventoryWO inventoryWO,
+			UriComponentsBuilder ucBuilder) {
+
+		log.error(String.format("Updating inventory %s ", inventoryWO.getInventoryId()));
 		InventoryWO currentInventory = inventoryService.findById(inventoryWO.getInventoryId());
 
 		if (currentInventory == null) {
-			System.out.println("Inventory with id " + inventoryWO.getInventoryId() + " not found");
+			System.out.println("Actor with id " + inventoryWO.getInventoryId() + " not found");
 			return new ResponseEntity<InventoryWO>(HttpStatus.NOT_FOUND);
 		}
 
@@ -93,11 +118,11 @@ public class InventoryRestController {
 		return new ResponseEntity<InventoryWO>(currentInventory, HttpStatus.OK);
 	}
 
-	// delete an inventory
+	// delete inventory
 	@RequestMapping(value = "/inventoryDelete/{id}", method = RequestMethod.GET)
 	public ResponseEntity<InventoryWO> deleteInventory(@PathVariable("id") int id) {
 
-		log.debug("Fetching & Deleting Inventory with id " + id);
+		System.out.println("Fetching & Deleting Inventory with id " + id);
 
 		InventoryWO inventoryWO = inventoryService.findById(id);
 		if (inventoryWO == null) {

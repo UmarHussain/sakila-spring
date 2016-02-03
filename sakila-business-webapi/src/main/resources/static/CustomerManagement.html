@@ -1,3 +1,4 @@
+
 <html>
 <head>
 <title>Customer Management</title>
@@ -31,7 +32,8 @@
 <link href="css/app.css" rel="stylesheet"></link>
 </head>
 <body ng-app="myApp" class="ng-cloak">
-	<div class="generic-container" ng-controller="CustomerController as ctrl">
+	<div class="generic-container"
+		ng-controller="CustomerController as ctrl">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<span class="lead">Customer Management Form </span>
@@ -94,12 +96,12 @@
 							</div>
 						</div>
 					</div>
-			
-					
-						<span class="lead">Customer Address : </span> 
+
+
+					<span class="lead">Customer Address : </span>
 
 					<div class="row">
-					<br/>
+						<br />
 						<div class="form-group col-md-12">
 							<label class="col-md-2 control-lable" for="file">Address</label>
 							<div class="col-md-7">
@@ -111,8 +113,8 @@
 					</div>
 					<div class="row">
 						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="file">Second Address
-								</label>
+							<label class="col-md-2 control-lable" for="file">Second
+								Address </label>
 							<div class="col-md-7">
 								<input type="text" ng-model="ctrl.address.address2"
 									name="address2" class="form-control input-sm"
@@ -136,8 +138,8 @@
 							<label class="col-md-2 control-lable" for="file">Postal
 								Code</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="ctrl.address.postalCode"
-									name="postalCode" class="form-control input-sm"
+								<input type="text" ng-model="ctrl.address.postal_code"
+									name="postal_code" class="form-control input-sm"
 									placeholder="Enter postal code. " />
 							</div>
 						</div>
@@ -145,9 +147,10 @@
 
 					<div class="row">
 						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="file"> City  </label>
+							<label class="col-md-2 control-lable" for="file"> City </label>
 							<div class="col-md-7">
-								<select name="city_id" ng-model="ctrl.address.city_id" required class="form-control">
+								<select name="city_id" ng-model="ctrl.address.city_id" required
+									class="form-control">
 									<option value="">Select the city :</option>
 									<option ng-repeat="c in ctrl.citys" value="{{c.cityId}}">{{c.city}}</option>
 								</select><br />
@@ -160,7 +163,7 @@
 						</div>
 					</div>
 
-					
+
 
 					<div class="row">
 						<div class="form-actions floatRight">
@@ -197,7 +200,7 @@
 							<td><span ng-bind="u.firstName"></span></td>
 							<td>
 								<button type="button"
-									ng-click="ctrl.edit(u.customerId,u.address_Id)"
+									ng-click="ctrl.edit(u.customerId,u.address_id)"
 									class="btn btn-success custom-width">Edit</button>
 							</td>
 						</tr>

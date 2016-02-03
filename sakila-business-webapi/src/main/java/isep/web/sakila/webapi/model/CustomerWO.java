@@ -40,6 +40,7 @@ public class CustomerWO extends WebObject {
 		this.store_id = customer.getStore().getStoreId();
 	}
 
+
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -76,15 +77,15 @@ public class CustomerWO extends WebObject {
 		return address_id;
 	}
 
-	public void setAddress_id(int adressId) {
-		this.address_id = adressId;
+	public void setAddress_id(int address_id) {
+		this.address_id = address_id;
 	}
 
 	public int getStore_id() {
 		return store_id;
 	}
 
-	public void setStrore_id(int store_id) {
+	public void setStore_id(int store_id) {
 		this.store_id = store_id;
 	}
 

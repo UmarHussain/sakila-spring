@@ -16,7 +16,7 @@ App.factory('AddressService', [
 								return $q.reject(errResponse);
 							});
 				},
-				
+
 				readAddress : function(address) {
 					return $http.get('http://localhost:8080/address/', address)
 							.then(function(response) {
@@ -28,7 +28,8 @@ App.factory('AddressService', [
 				},
 
 				createAddress : function(address) {
-					return $http.post('http://localhost:8080/address/', address)
+					return $http
+							.post('http://localhost:8080/address/', address)
 							.then(function(response) {
 								return response.data;
 							}, function(errResponse) {
@@ -40,7 +41,7 @@ App.factory('AddressService', [
 				updateAddress : function(address, addressId) {
 					console.log("XXX", address);
 					return $http.post('http://localhost:8080/addressUpdate/',
-							actor).then(function(response) {
+							address).then(function(response) {
 						return response.data;
 					}, function(errResponse) {
 						console.error('Error while updating address');
