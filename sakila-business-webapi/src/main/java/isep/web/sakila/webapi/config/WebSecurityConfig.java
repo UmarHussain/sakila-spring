@@ -29,6 +29,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
-                .withUser("zpeng").password("zpeng").roles("USER");
+                .withUser("root").password("root").roles("USER");
     }
 }

@@ -25,9 +25,9 @@ public class PersistenceConfig {
 	public DataSource dataSource(){
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/sakila");
-		dataSource.setUsername("zpeng");
-		dataSource.setPassword("zpeng");
+		dataSource.setUrl("jdbc:mysql://localhost:3307/sakila");
+		dataSource.setUsername("root");
+		dataSource.setPassword("root");
 		
 		return dataSource;
 	}

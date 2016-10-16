@@ -189,4 +189,20 @@ public class Address implements Serializable {
 		return store;
 	}
 
+	@Override
+	public String toString() {
+		return "Address{" +
+				"addressId=" + addressId +
+				", address='" + address + '\'' +
+				", address2='" + address2 + '\'' +
+				", district='" + district + '\'' +
+				", lastUpdate=" + lastUpdate +
+				", phone='" + phone + '\'' +
+				", postalCode='" + postalCode + '\'' +
+				", city=" + city +
+				", customers=" + customers +
+				", staffs=" + staffs +
+				", stores=" + stores +
+				'}';
+	}
 }

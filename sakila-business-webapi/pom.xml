@@ -89,6 +89,15 @@
 			<artifactId>sakila-business-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+		<!--Jasper Reports Dependencies-->
+
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.3.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
